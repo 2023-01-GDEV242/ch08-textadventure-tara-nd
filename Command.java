@@ -21,6 +21,10 @@ public class Command
 {
     private CommandWord commandWord;
     private String secondWord;
+    boolean look = look();
+    private CommandWord CommandWordlook;
+   
+
 
     /**
      * Create a command object. First and second words must be supplied, but
@@ -67,6 +71,12 @@ public class Command
     public boolean hasSecondWord()
     {
         return (secondWord != null);
+    }
+    /**
+     * @return true if this command is look.
+     */
+    public boolean look() {
+        return (commandWord == CommandWordlook);
     }
 }
 
