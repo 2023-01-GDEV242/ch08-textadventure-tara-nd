@@ -19,103 +19,71 @@ import java.util.Iterator;
  * @version 2016.02.29
  */
 
+import java.util.ArrayList;
+
 public class Room {
     private String description;
-    private HashMap<String, Room> exits; // stores exits of this room.
-    private Item item;
+    private ArrayList<Item> items;
+    private Room[] exits;
 
-    /**
-     * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "an open court yard".
-     *
-     * @param description The room's description.
-     */
     public Room(String description) {
         this.description = description;
-        exits = new HashMap<>();
-        item = null;
+        this.items = new ArrayList<Item>();
+        this.exits = new Room[6];
     }
 
-    /**
-     * Define an exit from this room.
-     *
-     * @param direction The direction of the exit.
-     * @param neighbor  The room to which the exit leads.
-     */
     public void setExit(String direction, Room neighbor) {
-        exits.put(direction, neighbor);
+        int index = directionToIndex(direction);
+        exits[index] = neighbor;
     }
 
-    /**
-     * Set an item in this room.
-     *
-     * @param item The item to be set in the room.
-     */
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    /**
-     * Get the item in this room.
-     *
-     * @return The item in the room, or null if there is no item.
-     */
-    public Item getItem() {
-        return item;
-    }
-
-    /**
-     * @return The short description of the room
-     * (the one that was defined in the constructor).
-     */
-    public String getShortDescription() {
-        return description;
-    }
-
-    /**
-     * Return a description of the room in the form:
-     * You are in the kitchen.
-     * Exits: north west
-     * Item: a table
-     *
-     * @return A long description of this room
-     */
-    public String getLongDescription() {
-        String longDescription = "You are " + description + ".\n" + getExitString();
-
-        if (item != null) {
-            longDescription += "\nItem: " + item.getDescription();
+    public String getDescription() {
+        String itemString = "";
+        if (items.size() > 0) {
+            itemString = " Items in the room:";
+            for (Item item : items) {
+                itemString += " " + item.getDescription();
+            }
         }
-
-        return longDescription;
+        return description + itemString;
     }
 
-    /**
-     * Return a string describing the room's exits, for example
-     * "Exits: north west".
-     *
-     * @return Details of the room's exits.
-     */
-    private String getExitString() {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for (String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-    /**
-     * Return the room that is reached if we go from this room in direction
-     * "direction". If there is no room in that direction, return null.
-     *
-     * @param direction The exit's direction.
-     * @return The room in the given direction.
-     */
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public Room getExit(String direction) {
-        return exits.get(direction);
+        int index = directionToIndex(direction);
+        return exits[index];
+    }
+
+    private int directionToIndex(String direction) {
+        switch (direction.toLowerCase()) {
+            case "north":
+                return 0;
+            case "east":
+                return 1;
+            case "south":
+                return 2;
+            case "west":
+                return 3;
+            case "up":
+                return 4;
+            case "down":
+                return 5;
+            default:
+                return -1;
+        }
     }
 }
+
 
 
