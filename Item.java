@@ -1,33 +1,69 @@
 
 /**
- * Write a description of class Item here.
+ * Represents item in a room
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Item
-{
-    // instance variables - replace the example below with your own
-    private int x;
+
+public class Item {
+    private String description; // description of the item
+    private double weight; // weight of the item
 
     /**
-     * Constructor for objects of class Item
+     * Creates a new item with the specified description and weight.
+     * 
+     * @param description the description of the item
+     * @param weight      the weight of the item
      */
-    public Item()
-    {
-        // initialise instance variables
-        x = 0;
+    public Item(String description, double weight) {
+        this.description = description;
+        this.weight = weight;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Gets the description of the item.
+     * 
+     * @return the description of the item
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Gets the weight of the item.
+     * 
+     * @return the weight of the item
+     */
+    public double getWeight() {
+        return weight;
+    }
+
+    /**
+     * Sets the description of the item.
+     * 
+     * @param description the new description of the item
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Sets the weight of the item.
+     * 
+     * @param weight the new weight of the item
+     */
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    /**
+     * Returns a string representation of the item (just the description).
+     * 
+     * @return a string representation of the item
+     */
+    public String toString() {
+        return description;
     }
 }
+
