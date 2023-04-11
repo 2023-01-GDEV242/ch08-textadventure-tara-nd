@@ -1,0 +1,17 @@
+
+list the elemnts implemented for B level
+
+- add items to your game. Each room can have one item in it. Items have description and weight. When printing room info, Item should be included
+- make it so rooms can hold multiple items
+
+- implement the back command (back one room)
+
+
+-add a Player that can carry one or more objects according to the options presented
+
+
+
+list the elements implemented for A level
+- one way trap door
+- locked doors and keys
+- rudimentary health system
