@@ -43,6 +43,14 @@ public class Game
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         
+        
+        Item key = new Item("key", 0.5);
+        Room lockedRoom = new Room("You are in a locked room.");
+        lockedRoom.setItem(key);
+        Item book = new Item("book", 1.0);
+        Item laptop = new Item("laptop",2.0);
+    
+        
         // initialise room exits
         outside.setExit("east", theater);
         outside.setExit("south", lab);
@@ -56,6 +64,10 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+        
+        lab.setItem(book);
+        theater.setItem(laptop);
+        office.setItem(key);
 
         currentRoom = outside;  // start game outside
     }

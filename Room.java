@@ -1,7 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
-
+import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -19,83 +19,43 @@ import java.util.Iterator;
  * @version 2016.02.29
  */
 
-import java.util.ArrayList;
+
 
 public class Room {
     private String description;
-    private ArrayList<Item> items;
-    private Room[] exits;
+    private HashMap<String, Room> exits;
+    private Item item;
 
     public Room(String description) {
         this.description = description;
-        this.items = new ArrayList<Item>();
-        this.exits = new Room[6];
+        exits = new HashMap<>();
     }
 
     public void setExit(String direction, Room neighbor) {
-        int index = directionToIndex(direction);
-        exits[index] = neighbor;
+        exits.put(direction, neighbor);
     }
 
     public String getDescription() {
-        String itemString = "";
-        if (items.size() > 0) {
-            itemString = " Items in the room:";
-            for (Item item : items) {
-                itemString += " " + item.getDescription();
-            }
+        String itemDescription = "";
+        if (item != null) {
+            itemDescription = "\nThere is a " + item.getDescription() + " here.";
         }
-        return description + itemString;
-    }
-
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
-    public void removeItem(Item item) {
-        items.remove(item);
-    }
-
-    public ArrayList<Item> getItems() {
-        return items;
+        return description + itemDescription;
     }
 
     public Room getExit(String direction) {
-        int index = directionToIndex(direction);
-        return exits[index];
-    }
-    /**
-     * "Look" was entered. Display the long description of the current room.
-     * @param command The command to be processed.
-     */
-    private void look(Command command) {
-    if (command.hasSecondWord()) {
-        System.out.println("Look what?");
-    } else {
-        System.out.println(room.getLongDescription());
-    }
+        return exits.get(direction);
     }
 
+    public Item getItem() {
+        return item;
+    }
 
-    private int directionToIndex(String direction) {
-        switch (direction.toLowerCase()) {
-            case "north":
-                return 0;
-            case "east":
-                return 1;
-            case "south":
-                return 2;
-            case "west":
-                return 3;
-            case "up":
-                return 4;
-            case "down":
-                return 5;
-            default:
-                return -1;
-        }
+    public void setItem(Item item) {
+        this.item = item;
     }
 }
+
 
 
 
