@@ -64,6 +64,18 @@ public class Room {
         int index = directionToIndex(direction);
         return exits[index];
     }
+    /**
+     * "Look" was entered. Display the long description of the current room.
+     * @param command The command to be processed.
+     */
+    private void look(Command command) {
+    if (command.hasSecondWord()) {
+        System.out.println("Look what?");
+    } else {
+        System.out.println(room.getLongDescription());
+    }
+    }
+
 
     private int directionToIndex(String direction) {
         switch (direction.toLowerCase()) {
