@@ -168,5 +168,16 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+    public class Game {
+    private Player player;
+    
+    public Game() {
+        player = new Player();
+        // other initialization code here
+    }
+
+    // game logic here
+}
+
 }
 
