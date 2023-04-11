@@ -1,10 +1,28 @@
 import java.util.ArrayList;
 
 public class Player {
+    
     private ArrayList<Item> inventory;
-
+    private int health; // the player's current health
+    
+    // constructor
     public Player() {
-        inventory = new ArrayList<>();
+        health = 100;
+    }
+    
+    // decreases the player's health by the specified amount
+    public void takeDamage(int amount) {
+        health -= amount;
+    }
+    
+    // increases the player's health by the specified amount
+    public void heal(int amount) {
+        health += amount;
+    }
+    
+    // returns the player's current health
+    public int getHealth() {
+        return health;
     }
 
     public boolean addItem(Item item) {
