@@ -21,40 +21,46 @@ import java.util.ArrayList;
 
 
 
+import java.util.ArrayList;
+
 public class Room {
     private String description;
-    private HashMap<String, Room> exits;
-    private Item item;
+    private ArrayList<Item> items;
 
     public Room(String description) {
         this.description = description;
-        exits = new HashMap<>();
+        items = new ArrayList<Item>();
     }
 
-    public void setExit(String direction, Room neighbor) {
-        exits.put(direction, neighbor);
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        items.remove(item);
     }
 
     public String getDescription() {
-        String itemDescription = "";
-        if (item != null) {
-            itemDescription = "\nThere is a " + item.getDescription() + " here.";
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public String getItemsString() {
+        String itemsString = "Items:";
+        for (Item item : items) {
+            itemsString += " " + item.getDescription();
         }
-        return description + itemDescription;
-    }
-
-    public Room getExit(String direction) {
-        return exits.get(direction);
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
+        return itemsString;
     }
 }
+
 
 
 
