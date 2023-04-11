@@ -118,6 +118,11 @@ public class Game
             case LOOK:
                 look(command);
                 break;
+            
+            case EAT:
+                eat();
+                break;
+           
 
             case QUIT:
                 wantToQuit = quit(command);

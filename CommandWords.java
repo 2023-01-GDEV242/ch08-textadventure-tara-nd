@@ -11,8 +11,9 @@ import java.util.HashMap;
  * @version 2016.02.29
  */
 
-public class CommandWords
-{
+import java.util.HashMap;
+
+public class CommandWords {
     // A mapping between a command word and the CommandWord
     // associated with it.
     private HashMap<String, CommandWord> validCommands;
@@ -20,8 +21,7 @@ public class CommandWords
     /**
      * Constructor - initialise the command words.
      */
-    public CommandWords()
-    {
+    public CommandWords() {
         validCommands = new HashMap<>();
         for(CommandWord command : CommandWord.values()) {
             if(command != CommandWord.UNKNOWN) {
@@ -36,8 +36,7 @@ public class CommandWords
      * @return The CommandWord correspondng to commandWord, or UNKNOWN
      *         if it is not a valid command word.
      */
-    public CommandWord getCommandWord(String commandWord)
-    {
+    public CommandWord getCommandWord(String commandWord) {
         CommandWord command = validCommands.get(commandWord);
         if(command != null) {
             return command;
@@ -46,25 +45,34 @@ public class CommandWords
             return CommandWord.UNKNOWN;
         }
     }
-    
+
     /**
      * Check whether a given String is a valid command word. 
      * @return true if it is, false if it isn't.
      */
-    public boolean isCommand(String aString)
-    {
+    public boolean isCommand(String aString) {
         return validCommands.containsKey(aString);
     }
 
     /**
      * Print all valid commands to System.out.
      */
-    public void showAll() 
-    {
+    public void showAll() {
         for(String command : validCommands.keySet()) {
             System.out.print(command + "  ");
         }
         System.out.println();
     }
-    
+
+    /**
+     * Get a string representation of all valid commands.
+     */
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(String command : validCommands.keySet()) {
+            sb.append(command).append(" ");
+        }
+        return sb.toString().trim();
+    }
 }
+
