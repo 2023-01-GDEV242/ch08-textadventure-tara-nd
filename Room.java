@@ -28,12 +28,51 @@ public class Room {
     private ArrayList<Item> items;
     private Room trapdoorRoom; // the room on the other side of the trap door
     private boolean trapdoorLocked; // whether the trap door is locked or not
+     private Room lockedRoom; // the room behind the locked door
+    private Item key; // the key to unlock the locked door
+    private boolean doorLocked; // whether the locked door is locked or not
     
     // constructor
     public Room() {
+        lockedRoom = null;
+        key = null;
+        doorLocked = false;
         trapdoorRoom = null;
         trapdoorLocked = false;
     }
+    
+    // sets the room behind the locked door
+    public void setLockedRoom(Room lockedRoom) {
+        this.lockedRoom = lockedRoom;
+    }
+    
+    // sets the key to unlock the locked door
+    public void setKey(Item key) {
+        this.key = key;
+    }
+    
+    // locks the door
+    public void lockDoor() {
+        doorLocked = true;
+    }
+    
+    // unlocks the door
+    public void unlockDoor(Item key) {
+        if(key == this.key) {
+            doorLocked = false;
+        }
+    }
+    
+    // returns the room behind the locked door
+    public Room getLockedRoom() {
+        return lockedRoom;
+    }
+    
+    // checks if the door is locked
+    public boolean isDoorLocked() {
+        return doorLocked;
+    }
+    
     
     // sets the room on the other side of the trap door
     public void setTrapdoorRoom(Room trapdoorRoom) {
